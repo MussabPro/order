@@ -1,0 +1,126 @@
+{% extends 'base.html' %} {% block title %}Change Status{% endblock %} {% block
+body %}
+<div class="container my-5 pb-4">
+  <div class="container myb-5">
+    <form action="/change/{{gig.no}}" method="POST">
+      <h2>Order here</h2>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          required
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          aria-describedby="emailHelp"
+          value="{{gig.name}}"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input
+          required
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          value="{{gig.email}}"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="info" class="form-label">Order details</label>
+        <textarea
+          required
+          type="text"
+          class="form-control"
+          id="info"
+          name="info"
+          cols="30"
+          rows="10"
+        >
+{{gig.info}}
+    </textarea
+        >
+      </div>
+      <div class="mb-3">
+        <h6 class="display-6">Do you have Upwork Account</h6>
+        <input
+          required
+          type="text"
+          class="form-control"
+          id="upacc"
+          name="upacc"
+          aria-describedby="emailHelp"
+          value="{{gig.UpAcc}}"
+        />
+      </div>
+      <div class="mb-3">
+        <h6 class="display-6">Services</h6>
+        <div class="form-check form-switch">
+          <input
+            required
+            type="text"
+            class="form-control"
+            id="services"
+            name="services"
+            aria-describedby="emailHelp"
+            value="{{gig.NatureOfWork}}"
+          />
+        </div>
+      </div>
+      <div class="mb-3">
+        <h5 class="display-5" id="cost">Cost :</h5>
+        <input
+          required
+          type="text"
+          class="form-control"
+          id="cost"
+          name="cost"
+          aria-describedby="emailHelp"
+          value="{{gig.Cost}}"
+        />
+      </div>
+      <div class="mb-3">
+        <h5 class="display-5" id="status">Status</h5>
+        <select
+          id="status"
+          name="status"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option value="{{gig.Status}}">{{gig.Status}}</option>
+          <option value="Ordered">Ordered</option>
+          <option value="Project Initiation">Project Initiation</option>
+          <option value="Execution and Delivery">Execution and Delivery</option>
+          <option value="Communication and Collaboration">
+            Communication and Collaboration
+          </option>
+          <option value="Revisions and Feedback">Revisions and Feedback</option>
+          <option value="Finalization and Approval">
+            Finalization and Approval
+          </option>
+          <option value="Payment and Closure">Payment and Closure</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <h6 class="display-6">Date of completion</h6>
+        <input
+          required
+          type="text"
+          class="form-control"
+          id="datec"
+          name="datec"
+          aria-describedby="emailHelp"
+          value="{{gig.DateCompleted}}"
+        />
+      </div>
+      <div class="d-grid gap-2 col-3 mx-auto">
+        <button type="submit" class="btn btn-outline-warning my-2">
+          Confirm Change Order Satus
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

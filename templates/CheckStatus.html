@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% block title %}Status{% endblock %} {% block body %}
+<div
+  class="container pb-4 position-absolute top-50 start-50 translate-middle shadow-lg mb-5 bg-body-tertiary rounded border border-end-0"
+>
+  <div class="container my-5" id="form" style="display: block">
+    <form action="/Status" method="POST" class="needs-validation" novalidate>
+      <h2>Check Your Order Status Here</h2>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          placeholder="Your Fullname..."
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          aria-describedby="emailHelp"
+          required
+        />
+        <div class="invalid-feedback">Please enter your name.</div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input
+          placeholder="Your E-mail..."
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          aria-describedby="emailHelp"
+          required
+        />
+        <div class="invalid-feedback">Please enter a valid email address.</div>
+      </div>
+      <div class="mb-3">
+        <label for="Order_number" class="form-label">Order Number</label>
+        <input
+          placeholder="Enter Order Number Here..."
+          type="number"
+          class="form-control"
+          id="Order_number"
+          name="Order_number"
+          aria-describedby="emailHelp"
+          max="9999"
+          required
+        />
+        <div class="invalid-feedback">
+          Please enter a valid Order Number(1000-9999).
+        </div>
+      </div>
+      <div class="d-grid gap-2 col-4 mx-auto">
+        <button
+          type="submit"
+          class="btn btn-outline-info my-4"
+          onclick="validateForm(event)"
+        >
+          Proseed Check
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="container my-5" id="Error" style="display: none">
+    <div class="mb-3">
+      <h2 class="text-center">No Such Order Exist</h2>
+      <p class="text-center">
+        Sorry, but we couldn't find any matching order with the provided
+        details.
+      </p>
+    </div>
+    <div class="d-grid gap-2 col-4 my-3 mx-auto">
+      <a href="/Status" class="btn btn-outline-dark my-4">Go Back</a>
+    </div>
+    <p id="ErrorTrue" style="display: none">{{Error}}</p>
+    <script src="{{ url_for('static', filename='scripts/Status.js') }}"></script>
+    {% endblock %}
+  </div>
+</div>

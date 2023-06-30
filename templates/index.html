@@ -1,0 +1,181 @@
+{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block body %}
+<div class="container my-5 pb-4">
+  <div class="container my-5">
+    <div id="orderForm">
+      <form action="/Home" method="POST" class="needs-validation" novalidate>
+        <h2>Order here</h2>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+            placeholder="Your Fullname..."
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            aria-describedby="emailHelp"
+            required
+          />
+          <div class="invalid-feedback">Please enter your name.</div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input
+            placeholder="Your E-mail..."
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            aria-describedby="emailHelp"
+            required
+          />
+          <div class="invalid-feedback">
+            Please enter a valid email address.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="info" class="form-label">Order details</label>
+          <textarea
+            placeholder="Title : (Title of Project)&#13;&#10;Description : (Description of Project)"
+            class="form-control"
+            id="info"
+            name="info"
+            cols="30"
+            rows="10"
+            onclick="changeText()"
+            required
+          ></textarea>
+          <div class="invalid-feedback">Please enter the order details.</div>
+        </div>
+        <div class="mb-3">
+          <h6 class="display-6">Do you have Upwork Account</h6>
+          <div class="btn-group" role="group" aria-label="Upwork Account">
+            <input
+              type="radio"
+              class="btn-check"
+              name="upacc"
+              id="upacc1"
+              value="Yes"
+              autocomplete="off"
+              required
+            />
+            <label class="btn btn-outline-success" for="upacc1">Yes</label>
+            <input
+              type="radio"
+              class="btn-check"
+              name="upacc"
+              id="upacc2"
+              value="No"
+              autocomplete="off"
+              checked
+              required
+            />
+            <label class="btn btn-outline-danger" for="upacc2">No</label>
+          </div>
+          <div class="invalid-feedback">
+            Please select if you have an Upwork account.
+          </div>
+        </div>
+        <div class="mb-3">
+          <h6 class="display-6">Services</h6>
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              name="video_editing"
+              value="Video Editing (25$/hr)"
+              id="videoEditingCheckbox"
+            />
+            <label class="form-check-label" for="videoEditingCheckbox"
+              >Video Editing (25$/hr)</label
+            >
+          </div>
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              name="Green_Screen"
+              value="Green Screen (10$/hr)"
+              id="GreenScreenCheckbox"
+            />
+            <label class="form-check-label" for="GreenScreenCheckbox"
+              >Green Screen (10$/hr)</label
+            >
+          </div>
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              name="photo_editing"
+              value="Photo Editing (5$/hr)"
+              id="photoEditingCheckbox"
+            />
+            <label class="form-check-label" for="photoEditingCheckbox"
+              >Photo Editing (5$/hr)</label
+            >
+          </div>
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              name="audio_editing"
+              value="Audio Editing (5$/hr)"
+              id="audioEditingCheckbox"
+            />
+            <label class="form-check-label" for="audioEditingCheckbox"
+              >Audio Editing (5$/hr)</label
+            >
+          </div>
+          <div class="invalid-feedback" id="serviceError">
+            Please select at least one service.
+          </div>
+        </div>
+        <input
+          type="hidden"
+          id="selectedServicesInput"
+          name="selected_services[]"
+          value=""
+          style="height: 0px"
+        />
+
+        <div class="mb-3">
+          <h6 class="display-6">Note:</h6>
+          <p>
+            Photo Editing, Audio Editing, or Green Screen needed in Video
+            Editing will not
+            <b>Cost Extra.</b>
+          </p>
+        </div>
+        <div class="mb-3 text-center">
+          <input
+            type="hidden"
+            id="costInput"
+            name="costInput"
+            style="height: 0px"
+          />
+          <h5 class="display-5" id="cost">Cost : 0$/hr</h5>
+        </div>
+        <div class="mb-3">
+          <h6 class="display-6">Estimated date of completion</h6>
+          <input
+            class="form-control"
+            type="datetime-local"
+            id="datec"
+            name="datec"
+            min="{{ current_time }}"
+            required
+          />
+          <div class="invalid-feedback">
+            Please select the estimated date of completion.
+          </div>
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button type="submit" class="btn btn-outline-success my-2">
+            Confirm order
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='scripts/Home.js') }}"></script>
+</div>
+{% endblock %}

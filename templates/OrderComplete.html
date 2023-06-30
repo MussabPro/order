@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block title %}Order Complete{% endblock %} {% block
+body %}
+<div class="position-absolute top-50 start-50 translate-middle">
+  <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded border border-end-0">
+    <div id="orderConfirmation">
+      <h1 class="text-center">Thank you for ordering!</h1>
+      <p class="text-center">
+        <b
+          >Your order number is:
+          <span id="orderNumber">{{ order_number }}</span></b
+        >
+      </p>
+      <p class="text-center">
+        You will receive an email confirmation <br />
+        shortly with your receipt and tracking information! <br />
+      </p>
+    </div>
+    <div class="text-center">
+      <a href="/print/{{ gig.OrderNumber}}" class="btn btn-primary mx-2"
+        >Print/View Receipt</a
+      >
+      <a href="{{URL}}" class="btn btn-secondary mx-2">Go Back</a>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='scripts/OrderComplete.js') }}"></script>
+{% endblock %}

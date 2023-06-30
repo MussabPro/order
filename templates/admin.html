@@ -1,0 +1,105 @@
+{% extends 'base.html' %} {% block title %}Admin{% endblock %} {% block body %}
+<div class="container my-5">
+  <h2>Your Orders</h2>
+  {% if allgig|length == 0 %}
+  <div class="alert alert-danger" role="alert">
+    No order found. Wait to have your first order.
+  </div>
+  {% else %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col">Name</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Info</th>
+        <th scope="col">Upwork Acc</th>
+        <th scope="col">Nature of Work</th>
+        <th scope="col">Cost</th>
+        <th scope="col">Status</th>
+        <th scope="col">Time of Order</th>
+        <th scope="col">Time of Completion</th>
+        <th scope="col">Order Number</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for gig in allgig %}
+      <tr>
+        <th scope="row">{{ loop.index }}</th>
+        <td>{{ gig.name }}</td>
+        <td><a href="mailto:{{gig.email}}">{{gig.email}}</a></td>
+        <td>{{ gig.info }}</td>
+        <td>{{ gig.UpAcc }}</td>
+        <td>{{ gig.NatureOfWork }}</td>
+        <td>{{ gig.Cost }}</td>
+        <td>{{ gig.Status }}</td>
+        <td>{{gig.datecre}}</td>
+        <td>{{gig.datecom}}</td>
+        <td>{{ gig.OrderNumber }}</td>
+        <td>
+          <div class="text-center">
+            <a
+              href="/change/{{ gig.no }}"
+              target="_blank"
+              class="btn btn-outline-dark btn-sm my-2 mx-1"
+              type="button"
+            >
+              Change Status
+            </a>
+            <a
+              href="/delete/{{ gig.no }}"
+              class="btn btn-outline-dark btn-sm my-2 mx-1 btn-delete"
+              type="button"
+            >
+              Delete
+            </a>
+            <a
+              href="/print/{{ gig.OrderNumber }}"
+              class="btn btn-outline-dark btn-sm my-2 mx-1 btn-delete"
+              type="button"
+              target="_blank"
+            >
+              Print/View
+            </a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+  <div class="mb-3 text-center">
+    <form action="/logout" method="POST">
+      <button type="submit" class="btn btn-outline-danger">Logout</button>
+    </form>
+  </div>
+</div>
+<script>
+    // Define the time threshold in milliseconds (e.g., 30 minutes)
+  const TIMEOUT_THRESHOLD = 30 * 60 * 1000;
+
+  // Get the last activity time from the session
+  const lastActivityTime = {{session.get('last_activity_time', 0)}} * 1000; // Convert to milliseconds
+
+  function logoutAfterTimeout() {
+    // Get the current time
+    const currentTime = Date.now();
+
+    // Calculate the elapsed time since the last activity
+    const elapsedTime = currentTime - lastActivityTime;
+
+    // Check if the elapsed time exceeds the threshold
+    if (elapsedTime > TIMEOUT_THRESHOLD) {
+      // Perform logout action (e.g., redirect to the logout route)
+      window.location.href = '/logout';
+    } else {
+      // Schedule the next check after 1 second
+      setTimeout(logoutAfterTimeout, 1000);
+    }
+  }
+
+  // Start the initial check after 1 second
+  setTimeout(logoutAfterTimeout, 1000);
+</script>
+{% endblock %}

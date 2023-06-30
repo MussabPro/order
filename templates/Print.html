@@ -1,0 +1,90 @@
+{% extends 'base.html' %} {% block title %}Receipt{% endblock %} {% block body
+%}
+
+<div
+  class="container-lg my-4 py-3 rounded-3 border border-black"
+  style="width: 75%"
+>
+  <h2 class="text-center">Mussab Omair</h2>
+  <h2 class="text-center" style="color: grey">(Freelancer)</h2>
+  <h1 class="text-center">Receipt</h2>
+  <hr />
+  <h4 class="text-center"><b>Order No :</b> <u>{{gig.OrderNumber}}</u></h4>
+  <h5 class="text-center" style="color:grey"><b>Order Status :</b> <u>{{gig.Status}}</u></h5>
+  <p><b>Name :</b> {{ gig.name }}</p>
+  <p><b>E-mail :</b> <a href="mailto:{{ gig.email }}">{{ gig.email }}</a></p>
+  <p><b>Order Details :</b> {{ gig.info }}</p>
+  <p><b>UpWork Accunt :</b> {{ gig.UpAcc }}</p>
+  <p><b>Nature of Work :</b> {{ gig.NatureOfWork }}</p>
+  <p><b>Cost :</b> {{ gig.Cost }}</p>
+  <p><b>Est. Date Completion :</b> {{ datecom }}</p>
+  <p><b>Time of Order :</b> {{ datecre }}</p>
+  <hr />
+  <h2 class="text-center">Thank You!<br />For<br />Ordering</h2>
+  <h3 class="text-center">Connect With Me</h3>
+  <div class="container text-center">
+    <style>
+      img {
+        width: 50px;
+        height: 50px;
+        margin: 0.75%;
+      }
+    </style>
+    <div>
+      <a
+        href="https://www.upwork.com/freelancers/~0136c3f3df4202c92e"
+        target="_blank"
+      >
+        <img
+          src="https://assets-global.website-files.com/603fea6471d9d8559d077603/6092b7514135708162a4be92_Favicon%20256.png"
+          alt="Upwork"
+        />
+      </a>
+      <a href="https://www.instagram.com/itus._.mussab/" target="_blank">
+        <img
+          src="https://thesustainableangle.org/wp-content/uploads/2015/01/Stunning-Instagram-Logo-Vector-Free-Download-43-For-New-Logo-with-Instagram-Logo-Vector-Free-Download-1.png"
+          alt="Instagram"
+        />
+      </a>
+      <a href="https://www.facebook.com/mussab.umair.9849" target="_blank">
+        <img
+          src="https://www.edigitalagency.com.au/wp-content/uploads/Facebook-logo-blue-circle-large-transparent-png.png"
+          alt="Facebook"
+        />
+      </a>
+      <a href="https://github.com/MussabPro" target="_blank">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+          alt="Github"
+        />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/mussab-omair-685808253/"
+        target="_blank"
+      >
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+          alt="Linkedin"
+        />
+      </a>
+    </div>
+  </div>
+</div>
+<div class="text-center">
+  <button class="btn btn-primary" id="myButton" onclick="printPage()">
+    Print
+  </button>
+</div>
+
+<script>
+  function printPage() {
+    var button = document.getElementById("myButton");
+    button.style.display = "none";
+    window.addEventListener("afterprint", function () {
+      button.style.display = ""; // Set the display property back to its original value
+    });
+    window.print();
+  }
+</script>
+
+{% endblock %}
