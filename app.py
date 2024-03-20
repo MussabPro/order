@@ -141,7 +141,7 @@ def PrintReceipt(order_number):
     output_datecre_str = input_datecre.strftime("%d-%m-%Y %I:%M:%S %p")
     return render_template('Print.html',gig=gig,datecom=output_datecom_str,datecre=output_datecre_str)
 
-@app.route('/admin/', methods=["GET", "POST"])
+@app.route('/admin', methods=["GET", "POST"])
 def admin():
     if session.get('logged_in'):
         # Update last activity time
@@ -170,7 +170,7 @@ def delete(no):
         gig = Gig.query.filter_by(no=no).first()
         db.session.delete(gig)
         db.session.commit()
-      return redirect('/admin/')
+      return redirect('/admin')
 
 
 @app.route('/change/<int:no>', methods=["GET", "POST"])
@@ -195,7 +195,7 @@ def change(no):
         gig.DateCompleted = DateCompleted
         db.session.add(gig)
         db.session.commit()
-        return redirect('/admin/')
+        return redirect('/admin')
     gig = Gig.query.filter_by(no=no).first()
     return render_template("change.html", gig=gig)
 
